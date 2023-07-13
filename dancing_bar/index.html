@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dancing Bar</title>
+    <style>
+        .container{
+            text-align: center;
+            margin-top: 200px;
+        } 
+        .larContainer {
+            display: inline-grid;
+            grid-template-columns: auto auto auto auto auto;/* Example grid-template-columns value */
+            background-color: #3e2723;
+            border-style: solid;
+            border-width: 20px;
+            border-color: #3e2723;
+            height: 150px; 
+            position: relative;
+            overflow: hidden;
+        }
+        .smallContainer {
+            padding: 70px;
+            transition: margin-top 0.3s ease;
+        }
+        #con1{
+        background-color: rgb(134, 44, 212);   
+        }
+        #con2{
+            background-color:rgb(180, 58, 182);
+        }    
+        #con3{
+            background-color:rgb(158, 71, 112); 
+        }
+        #con4{
+            background-color:rgb(201, 108, 32);
+        }
+        #con5{
+            background-color: yellow;
+        }
+        .btnContainer{
+            margin-top:100px;
+
+        }
+
+
+        #startButton{
+            background-color: aqua;
+            padding:5px 25px;
+            margin-left: 20px;
+        }
+        #stopButton{
+            background-color: aqua;
+            padding:5px 25px;
+            margin-left: 50px;
+        }
+        #resetButton{
+            background-color: aqua;
+            padding:5px 25px;
+            margin-left: 50px;
+        }
+        </style>
+</head>
+<body>
+  <div class="container">
+    <div class="larContainer">
+        <div class="smallContainer" id="con1"></div>
+        <div class="smallContainer" id="con2"></div>
+        <div class="smallContainer" id="con3"></div>
+        <div class="smallContainer" id="con4"></div>
+        <div class="smallContainer" id="con5"></div>
+    </div>
+    <div class="btnContainer">
+    <button id="startButton" >Start</button>
+    <button id="stopButton" >Stop</button>
+    <button id="resetButton" >Reset</button>
+    </div>
+    </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const startButton = document.getElementById('startButton');
+    const stopButton = document.getElementById('stopButton');
+    const resetButton = document.getElementById('resetButton');
+    const larContainer = document.getElementsByClassName('larContainer')[0];
+    let intervalId;
+    var con1Element = document.getElementById('con1');
+    var con2Element = document.getElementById('con2');
+    var con3Element = document.getElementById('con3');
+    var con4Element = document.getElementById('con4');
+    var con5Element = document.getElementById('con5');
+    var larHeight = larContainer.clientHeight;
+    var stop=true;
+    var a,b,c,d,e;
+   
+    function chartDancing() {
+      console.log("Hello world!");
+        a = Math.floor(Math.random() * larHeight);
+        b = Math.floor(Math.random() * larHeight);
+        c = Math.floor(Math.random() * larHeight);
+        d = Math.floor(Math.random() * larHeight);
+        e = Math.floor(Math.random() * larHeight);
+    
+      con1Element.style.marginTop = `${a}px`;
+      con2Element.style.marginTop = `${b}px`;
+      con3Element.style.marginTop = `${c}px`;
+      con4Element.style.marginTop = `${d}px`;
+      con5Element.style.marginTop = `${e}px`;
+    }
+    startButton.addEventListener('click', function() {
+        if(stop!=false){
+        intervalId=setInterval(chartDancing, 200);
+        stop = false;
+        }
+    });
+    stopButton.addEventListener('click', function() {
+        clearInterval(intervalId);
+        stop=true;
+    });
+    resetButton.addEventListener('click',function(){
+        clearInterval(intervalId);
+        stop=true;
+        con1Element.style.marginTop = "0px";
+        con2Element.style.marginTop = "0px";
+        con3Element.style.marginTop = "0px";
+        con4Element.style.marginTop = "0px";
+        con5Element.style.marginTop = "0px"; 
+    });
+  });
+  
+</script>
+</body>
+</html>
